@@ -2,6 +2,8 @@ from Board import Board
 from Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
 from Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
+from Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 from Game import Game
 from MoveController import MoveController
 from Pieces.Piece import Color
@@ -55,7 +57,13 @@ while not game.is_finished():
                 origin_coordinates, destination_coordinates,
                 color
             )
-        except (CoordinatesOutOfBoundError, DestinationSquareOccupiedError, InvalidCoordinateFormat) as e:
+        except (
+                CoordinatesOutOfBoundError,
+                DestinationSquareOccupiedError,
+                InvalidCoordinateFormat,
+                OriginSquareEmptyError,
+                OriginSquareContainsEnemyPieceError
+        ) as e:
             print(e)
             continue
 

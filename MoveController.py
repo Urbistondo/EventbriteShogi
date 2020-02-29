@@ -17,11 +17,11 @@ class MoveController:
 
     @staticmethod
     def validate_move(board, origin_coordinates, destination_coordinates, color):
-        if board.is_square_empty(destination_coordinates[0], destination_coordinates[1]):
-            raise OriginSquareEmptyError('The destination square is empty')
+        if board.is_square_empty(origin_coordinates[0], origin_coordinates[1]):
+            raise OriginSquareEmptyError('The origin square is empty')
 
-        if not board.is_occupied_by_friendly(origin_coordinates[0], origin_coordinates[1]):
-            raise OriginSquareContainsEnemyPieceError('The destination square is empty')
+        if not board.is_occupied_by_friendly(origin_coordinates[0], origin_coordinates[1], color):
+            raise OriginSquareContainsEnemyPieceError('The origin square contains an enemy piece')
 
         if board.is_occupied_by_friendly(destination_coordinates[0], destination_coordinates[1], color):
             raise DestinationSquareOccupiedError("Can't move to a square occupied by a friendly piece")
