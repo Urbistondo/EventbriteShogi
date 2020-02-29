@@ -1,3 +1,6 @@
+from Square import Square
+
+
 class Board:
     columns = -1
     rows = -1
@@ -9,7 +12,7 @@ class Board:
 
         self.rows = rows
         self.columns = columns
-        self.grid = [[' ' for i in range(columns)] for j in range(rows)]
+        self.grid = [[Square() for i in range(columns)] for j in range(rows)]
 
     def to_string(self):
         print(self.rows)
@@ -23,8 +26,8 @@ class Board:
         print('+ ' + ' -' * len(col_indices) + ' +')
         for index, row in enumerate(self.grid):
             row_string = str(index) + '| '
-            for position in row:
-                row_string += position + ' '
+            for square in row:
+                row_string += square.to_string() + ' '
             print(row_string)
         print('+' + ' -' * len(col_indices) + ' +')
         print('Captured:')
