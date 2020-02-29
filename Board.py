@@ -50,6 +50,15 @@ class Board:
 
         self.grid[first_row][4].set_piece(piece_factory.create_king(color))
 
+    def is_occupied_by_friendly(self, row, col, color):
+        return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() == color
+
+    def is_occupied_by_enemy(self, row, col, color):
+        return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() != color
+
+    def get_piece_in_square(self, row, col):
+        return self.grid[row][col].get_piece()
+
     def to_string(self):
         print(self.rows)
         print('============ Whites (v) ============')
