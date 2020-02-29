@@ -59,7 +59,7 @@ class Board:
     def get_piece_in_square(self, row, col):
         return self.grid[row][col].get_piece()
 
-    def to_string(self):
+    def to_string(self, captured_white=None, captured_black=None):
         print(self.rows)
         print('============ Whites (v) ============')
         print('Captured:')

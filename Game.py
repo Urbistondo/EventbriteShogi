@@ -24,6 +24,7 @@ class Game:
 
     def start_game(self):
         self.start_date = datetime.datetime.now()
+        self.board.initialize_board(self.piece_factory)
         self.turn = 1
         self.current_player = Color.WHITE
 

@@ -40,8 +40,15 @@ game = Game(board, piece_factory)
 game.start_game()
 
 while not game.is_finished():
-    game.board.to_string()
+    game.to_string()
     color = game.get_current_player()
     origin_coordinates, destination_coordinates = prompt_move(board, game.get_turn(), color, move_controller)
+    captured = move_controller.move(
+        board,
+        origin_coordinates, destination_coordinates,
+        color
+    )
+    if captured:
+        game.add_captured(color, captured)
     game.next_turn()
 
