@@ -1,0 +1,2 @@
+class OriginSquareEmptyError(Exception):
+    pass

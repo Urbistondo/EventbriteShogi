@@ -50,6 +50,9 @@ class Board:
 
         self.grid[first_row][4].set_piece(piece_factory.create_king(color))
 
+    def is_square_empty(self, row, col):
+        return self.grid[row][col].is_empty()
+
     def is_occupied_by_friendly(self, row, col, color):
         return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() == color
 

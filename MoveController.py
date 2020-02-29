@@ -1,5 +1,8 @@
 from Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
+from Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 
 
 class MoveController:
@@ -14,8 +17,14 @@ class MoveController:
 
     @staticmethod
     def validate_move(board, origin_coordinates, destination_coordinates, color):
+        if board.is_square_empty(destination_coordinates[0], destination_coordinates[1]):
+            raise OriginSquareEmptyError('The destination square is empty')
+
+        if not board.is_occupied_by_friendly(origin_coordinates[0], origin_coordinates[1]):
+            raise OriginSquareContainsEnemyPieceError('The destination square is empty')
+
         if board.is_occupied_by_friendly(destination_coordinates[0], destination_coordinates[1], color):
-            raise ValueError
+            raise DestinationSquareOccupiedError("Can't move to a square occupied by a friendly piece")
 
     @staticmethod
     def is_capture(board, destination_coordinates, color):
@@ -33,8 +42,9 @@ class MoveController:
         if MoveController.is_capture(board, destination_coordinates, color):
             captured = board.get_piece_in_square(destination_coordinates[0], destination_coordinates[1])
 
-        board.grid[destination_coordinates[0]][destination_coordinates[1]] =\
+        board.grid[destination_coordinates[0]][destination_coordinates[1]].set_piece(
             board.grid[origin_coordinates[0]][origin_coordinates[1]].get_piece()
+        )
         board.grid[origin_coordinates[0]][origin_coordinates[1]].remove_piece()
 
         return captured

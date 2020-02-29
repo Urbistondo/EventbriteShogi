@@ -1,4 +1,7 @@
 from Board import Board
+from Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
+from Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
 from Game import Game
 from MoveController import MoveController
 from Pieces.Piece import Color
@@ -13,8 +16,8 @@ def prompt_move(board, turn, player, move_controller):
         origin_coordinates = input('From (row col):\n')
         try:
             move_controller.validate_coordinates(board, origin_coordinates)
-        except ValueError:
-            print('Invalid coordinates')
+        except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
+            print(e)
             continue
 
         break
@@ -23,8 +26,8 @@ def prompt_move(board, turn, player, move_controller):
         destination_coordinates = input('To (row col):\n')
         try:
             move_controller.validate_coordinates(board, destination_coordinates)
-        except ValueError:
-            print('Invalid coordinates')
+        except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
+            print(e)
             continue
 
         break
@@ -42,13 +45,24 @@ game.start_game()
 while not game.is_finished():
     game.to_string()
     color = game.get_current_player()
-    origin_coordinates, destination_coordinates = prompt_move(board, game.get_turn(), color, move_controller)
-    captured = move_controller.move(
-        board,
-        origin_coordinates, destination_coordinates,
-        color
-    )
+    captured = None
+
+    while True:
+        try:
+            origin_coordinates, destination_coordinates = prompt_move(board, game.get_turn(), color, move_controller)
+            captured = move_controller.move(
+                board,
+                origin_coordinates, destination_coordinates,
+                color
+            )
+        except (CoordinatesOutOfBoundError, DestinationSquareOccupiedError, InvalidCoordinateFormat) as e:
+            print(e)
+            continue
+
+        break
+
     if captured:
         game.add_captured(color, captured)
+
     game.next_turn()
 
