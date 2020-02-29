@@ -1,0 +1,2 @@
+class InvalidCoordinateFormat(Exception):
+    pass

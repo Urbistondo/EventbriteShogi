@@ -46,3 +46,12 @@ class Game:
     def next_turn(self):
         self.turn += 1
         self.current_player = Color.WHITE if self.current_player == Color.BLACK else Color.BLACK
+
+    def add_captured(self, color, piece):
+        if color == Color.WHITE:
+            self.captured_white.append(piece)
+        else:
+            self.captured_black.append(piece)
+
+    def to_string(self):
+        self.board.to_string(self.captured_white, self.captured_black)
