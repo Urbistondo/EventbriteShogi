@@ -1,0 +1,2 @@
+class PieceMovementPathObstructedError(Exception):
+    pass

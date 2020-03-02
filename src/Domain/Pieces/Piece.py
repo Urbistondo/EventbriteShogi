@@ -8,7 +8,8 @@ class Color(Enum):
 
 class Piece:
     description = None
-    color = False
+    color = None
+    obstructable = False
     representation = None
     symbol = None
 
@@ -27,6 +28,9 @@ class Piece:
 
     def get_color(self):
         return self.color
+
+    def is_obstructable(self):
+        return self.obstructable
 
     def can_reach(self, origin_row, origin_col, destination_row, destination_col, color=None):
         pass
