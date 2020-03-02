@@ -1,6 +1,6 @@
-from src.Application.ValidateCoordinatesCommand import ValidateCoordinatesCommand
-from src.Application.ValidateCoordinatesService import ValidateCoordinatesService
-from src.Domain.BoardVisualizer import BoardVisualizer
+from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
+from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
+from src.Infrastructure.Services.BoardVisualizer import BoardVisualizer
 from src.Domain.Pieces.Piece import Color
 from src.Domain.Square import Square
 

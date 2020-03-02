@@ -13,13 +13,16 @@ class BoardVisualizer:
         },
     }
 
+    def __init__(self):
+        pass
+
     @staticmethod
-    def visualize(grid, captured_white=None, captured_black=None):
+    def visualize(board, captured_white=None, captured_black=None):
         BoardVisualizer.__print_info(Color.WHITE, captured_white)
-        BoardVisualizer.__print_index_row(len(grid[0]))
-        BoardVisualizer.__print_separator(len(grid[0]))
-        BoardVisualizer.__print_board_state(grid)
-        BoardVisualizer.__print_separator(len(grid[0]))
+        BoardVisualizer.__print_index_row(len(board.get_grid()[0]))
+        BoardVisualizer.__print_separator(len(board.get_grid()[0]))
+        BoardVisualizer.__print_board_state(board.get_grid())
+        BoardVisualizer.__print_separator(len(board.get_grid()[0]))
         BoardVisualizer.__print_info(Color.BLACK, captured_black)
 
     @staticmethod
