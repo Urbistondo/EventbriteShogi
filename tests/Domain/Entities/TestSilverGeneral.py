@@ -21,10 +21,10 @@ class TestSilverGeneral(unittest.TestCase):
 
     def test_init(self):
         piece = SilverGeneral(Color.WHITE)
-        assert piece.description == self.PIECE_DESCRIPTION
-        assert piece.representation == self.PIECE_REPRESENTATION
-        assert piece.color == Color.WHITE
-        assert piece.symbol == self.COLORS[Color.WHITE]['symbol']
+        self.assertEqual(self.PIECE_DESCRIPTION, piece.description)
+        self.assertEqual(self.PIECE_REPRESENTATION, piece.representation)
+        self.assertEqual(Color.WHITE, piece.color)
+        self.assertEqual(self.COLORS[Color.WHITE]['symbol'], piece.symbol)
 
     def test_can_reach(self):
         piece = SilverGeneral(Color.WHITE)
