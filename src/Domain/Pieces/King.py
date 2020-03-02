@@ -1,4 +1,4 @@
-from Domain.Pieces.Piece import Piece
+from src.Domain.Pieces.Piece import Piece
 
 
 class King(Piece):

@@ -1,11 +1,11 @@
-from Domain.Pieces.Bishop import Bishop
-from Domain.Pieces.GoldGeneral import GoldGeneral
-from Domain.Pieces.King import King
-from Domain.Pieces.Knight import Knight
-from Domain.Pieces.Lance import Lance
-from Domain.Pieces.Pawn import Pawn
-from Domain.Pieces.Rook import Rook
-from Domain.Pieces.SilverGeneral import SilverGeneral
+from src.Domain.Pieces.Bishop import Bishop
+from src.Domain.Pieces.GoldGeneral import GoldGeneral
+from src.Domain.Pieces.King import King
+from src.Domain.Pieces.Knight import Knight
+from src.Domain.Pieces.Lance import Lance
+from src.Domain.Pieces.Pawn import Pawn
+from src.Domain.Pieces.Rook import Rook
+from src.Domain.Pieces.SilverGeneral import SilverGeneral
 
 
 class PieceFactory:

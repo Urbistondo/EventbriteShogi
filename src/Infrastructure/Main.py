@@ -1,14 +1,14 @@
-from Application.MovePieceCommand import MovePieceCommand
-from Domain.Board import Board
-from Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
-from Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
-from Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
-from Domain.Game import Game
-from Application.MovePieceService import MovePieceService
-from Domain.Pieces.Piece import Color
-from Domain.Pieces.PieceFactory import PieceFactory
+from src.Application.MovePieceCommand import MovePieceCommand
+from src.Domain.Board import Board
+from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
+from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
+from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
+from src.Domain.Game import Game
+from src.Application.MovePieceService import MovePieceService
+from src.Domain.Pieces.Piece import Color
+from src.Domain.Pieces.PieceFactory import PieceFactory
 
 
 def prompt_move(board, turn, player, move_controller):

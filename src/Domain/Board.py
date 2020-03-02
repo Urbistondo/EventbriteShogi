@@ -1,6 +1,6 @@
-from Domain.BoardVisualizer import BoardVisualizer
-from Domain.Pieces.Piece import Color
-from Domain.Square import Square
+from src.Domain.BoardVisualizer import BoardVisualizer
+from src.Domain.Pieces.Piece import Color
+from src.Domain.Square import Square
 
 
 class Board:

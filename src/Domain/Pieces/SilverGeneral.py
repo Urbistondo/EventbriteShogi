@@ -1,4 +1,4 @@
-from Domain.Pieces.Piece import Piece, Color
+from src.Domain.Pieces.Piece import Piece, Color
 
 
 class SilverGeneral(Piece):
