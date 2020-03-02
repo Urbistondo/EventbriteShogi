@@ -35,5 +35,9 @@ class Piece:
     def can_reach(self, origin_row, origin_col, destination_row, destination_col, color=None):
         pass
 
+    def convert(self):
+        self.symbol = self.SYMBOL_BLACK if self.color == Color.WHITE else self.SYMBOL_WHITE
+        self.color = Color.WHITE if self.color == Color.BLACK else Color.BLACK
+
     def to_string(self):
         return self.representation + self.symbol
