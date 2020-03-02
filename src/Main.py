@@ -3,16 +3,16 @@ from src.Application.Services.MoveAndCapturePieceService import MoveAndCapturePi
 from src.Application.Services.MovePieceCommand import MovePieceCommand
 from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
 from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
-from src.Domain.Board import Board
+from src.Domain.Entities.Board import Board
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
 from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
 from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
-from src.Domain.Game import Game
+from src.Domain.Entities.Game import Game
 from src.Application.Services.MovePieceService import MovePieceService
-from src.Domain.Pieces.PieceFactory import PieceFactory
+from src.Domain.Entities.PieceFactory import PieceFactory
 from src.Infrastructure.Clients.CommandLineClient import CommandLineClient
 
 board = Board(9, 9)

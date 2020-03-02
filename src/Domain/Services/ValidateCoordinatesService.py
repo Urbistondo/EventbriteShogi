@@ -3,12 +3,9 @@ from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBo
 
 class ValidateCoordinatesService:
     @staticmethod
-    def validate_coordinates(validate_coordinates_command):
-        try:
-            row = int(validate_coordinates_command.get_row_coordinate())
-            col = int(validate_coordinates_command.get_column_coordinate())
-        except ValueError:
-            print('The provided coordinates include non-numeric characters')
+    def execute(validate_coordinates_command):
+        row = int(validate_coordinates_command.get_row_coordinate())
+        col = int(validate_coordinates_command.get_column_coordinate())
 
         if row < 0 or col < 0 or \
                 row >= validate_coordinates_command.get_rows() or col >= validate_coordinates_command.get_columns():

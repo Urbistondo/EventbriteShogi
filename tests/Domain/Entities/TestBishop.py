@@ -1,10 +1,10 @@
 import unittest
 
-from src.Domain.Pieces.Lance import Lance
-from src.Domain.Pieces.Piece import Color
+from src.Domain.Entities.Bishop import Bishop
+from src.Domain.Entities.Piece import Color
 
 
-class TestLance(unittest.TestCase):
+class TestBishop(unittest.TestCase):
     COLORS = {
         Color.WHITE: {
             'description': 'Whites',
@@ -16,25 +16,31 @@ class TestLance(unittest.TestCase):
         },
     }
 
-    PIECE_DESCRIPTION = 'Lance'
-    PIECE_REPRESENTATION = 'L'
+    PIECE_DESCRIPTION = 'Bishop'
+    PIECE_REPRESENTATION = 'B'
 
     def test_init(self):
-        piece = Lance(Color.WHITE)
+        piece = Bishop(Color.WHITE)
         assert piece.description == self.PIECE_DESCRIPTION
         assert piece.representation == self.PIECE_REPRESENTATION
         assert piece.color == Color.WHITE
         assert piece.symbol == self.COLORS[Color.WHITE]['symbol']
 
     def test_can_reach(self):
-        piece = Lance(Color.WHITE)
+        piece = Bishop(Color.WHITE)
 
         origin_row = 2
         origin_col = 2
 
         valid_destinations = [
-            (3, 2),
-            (4, 2),
+            (0, 0),
+            (1, 1),
+            (4, 0),
+            (3, 1),
+            (4, 4),
+            (3, 3),
+            (0, 4),
+            (1, 3),
         ]
 
         for i in range(5):

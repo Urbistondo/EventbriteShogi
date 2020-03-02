@@ -1,11 +1,9 @@
-from src.Domain.Pieces.Bishop import Bishop
-from src.Domain.Pieces.Lance import Lance
-from src.Domain.Pieces.Rook import Rook
-from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
-from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
+from src.Domain.Entities.Bishop import Bishop
+from src.Domain.Entities.Lance import Lance
+from src.Domain.Entities.Rook import Rook
 from src.Infrastructure.Services.BoardVisualizer import BoardVisualizer
-from src.Domain.Pieces.Piece import Color
-from src.Domain.Square import Square
+from src.Domain.Entities.Piece import Color
+from src.Domain.Entities.Square import Square
 
 
 class Board:
@@ -81,40 +79,20 @@ class Board:
         for i in range(self.columns):
             self.grid[third_row][i].set_piece(piece_factory.create_pawn(color))
 
-    def validate_coordinates(self, row, col):
-
-        if row < 0 or col < 0 or row >= self.rows or col >= self.columns:
-            raise ValueError("The provided coordinates are out of the board's bounds")
-
     def is_square_empty(self, row, col):
-        ValidateCoordinatesService.validate_coordinates(ValidateCoordinatesCommand(self.rows, self.columns, row, col))
         return self.grid[row][col].is_empty()
 
     def is_square_occupied_by_friendly(self, row, col, color):
-        ValidateCoordinatesService.validate_coordinates(ValidateCoordinatesCommand(self.rows, self.columns, row, col))
         return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() == color
 
     def is_square_occupied_by_enemy(self, row, col, color):
-        ValidateCoordinatesService.validate_coordinates(ValidateCoordinatesCommand(self.rows, self.columns, row, col))
         return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() != color
 
     def is_square_reachable_by_piece(self, origin_row, origin_col, destination_row, destination_col, color):
-        ValidateCoordinatesService.validate_coordinates(
-            ValidateCoordinatesCommand(self.rows, self.columns, origin_row, origin_col)
-        )
-        ValidateCoordinatesService.validate_coordinates(
-            ValidateCoordinatesCommand(self.rows, self.columns, destination_row, destination_col)
-        )
         piece = self.grid[origin_row][origin_col].get_piece()
         return piece.can_reach(origin_row, origin_col, destination_row, destination_col, color)
 
     def is_path_obstructed(self, origin_row, origin_col, destination_row, destination_col):
-        ValidateCoordinatesService.validate_coordinates(
-            ValidateCoordinatesCommand(self.rows, self.columns, origin_row, origin_col)
-        )
-        ValidateCoordinatesService.validate_coordinates(
-            ValidateCoordinatesCommand(self.rows, self.columns, destination_row, destination_col)
-        )
         piece = self.grid[origin_row][origin_col].get_piece()
 
         if isinstance(piece, Bishop):
@@ -129,45 +107,35 @@ class Board:
                     return True
 
         if isinstance(piece, Lance):
-            if origin_col < destination_col:
-                col_start = origin_col
-                col_end = destination_col
-            else:
-                col_start = destination_col
-                col_end = origin_col
+            row_direction = -1 if origin_row > destination_row else 1
 
-            for j in range(col_start, col_end + 1):
-                if not self.grid[origin_row][j].is_empty():
+            distance = abs(origin_row - destination_row) - 1
+            for i in range(distance):
+                origin_row += row_direction
+                if not self.grid[origin_row][origin_col].is_empty():
                     return True
 
         if isinstance(piece, Rook):
             if origin_row == destination_row:
-                if origin_col < destination_col:
-                    col_start = origin_col
-                    col_end = destination_col
-                else:
-                    col_start = destination_col
-                    col_end = origin_col
+                col_direction = -1 if origin_col > destination_col else 1
 
-                for j in range(col_start, col_end + 1):
-                    if not self.grid[origin_row][j].is_empty():
+                distance = abs(origin_col - destination_col) - 1
+                for i in range(distance):
+                    origin_col += col_direction
+                    if not self.grid[origin_row][origin_col].is_empty():
                         return True
             else:
-                if origin_row < destination_row:
-                    row_start = origin_row
-                    row_end = destination_row
-                else:
-                    row_start = destination_row
-                    row_end = origin_row
+                row_direction = -1 if origin_row > destination_row else 1
 
-                for i in range(row_start, row_end + 1):
-                    if not self.grid[i][origin_col].is_empty():
+                distance = abs(origin_row - destination_row) - 1
+                for i in range(distance):
+                    origin_row += row_direction
+                    if not self.grid[origin_row][origin_col].is_empty():
                         return True
 
         return False
 
     def get_piece_in_square(self, row, col):
-        ValidateCoordinatesService.validate_coordinates(ValidateCoordinatesCommand(self.rows, self.columns, row, col))
         return self.grid[row][col].get_piece()
 
     def to_string(self, captured_white=None, captured_black=None):

@@ -1,16 +1,16 @@
 import unittest
 
-from src.Domain.Board import Board
-from src.Domain.Pieces.Bishop import Bishop
-from src.Domain.Pieces.GoldGeneral import GoldGeneral
-from src.Domain.Pieces.King import King
-from src.Domain.Pieces.Knight import Knight
-from src.Domain.Pieces.Lance import Lance
-from src.Domain.Pieces.Pawn import Pawn
-from src.Domain.Pieces.Piece import Color
-from src.Domain.Pieces.PieceFactory import PieceFactory
-from src.Domain.Pieces.Rook import Rook
-from src.Domain.Pieces.SilverGeneral import SilverGeneral
+from src.Domain.Entities.Board import Board
+from src.Domain.Entities.Bishop import Bishop
+from src.Domain.Entities.GoldGeneral import GoldGeneral
+from src.Domain.Entities.King import King
+from src.Domain.Entities.Knight import Knight
+from src.Domain.Entities.Lance import Lance
+from src.Domain.Entities.Pawn import Pawn
+from src.Domain.Entities.Piece import Color
+from src.Domain.Entities.PieceFactory import PieceFactory
+from src.Domain.Entities.Rook import Rook
+from src.Domain.Entities.SilverGeneral import SilverGeneral
 
 
 class TestBoard(unittest.TestCase):

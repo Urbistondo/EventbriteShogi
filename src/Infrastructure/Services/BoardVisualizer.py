@@ -1,4 +1,4 @@
-from src.Domain.Pieces.Piece import Color
+from src.Domain.Entities.Piece import Color
 
 
 class BoardVisualizer:

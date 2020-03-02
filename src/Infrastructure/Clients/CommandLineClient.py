@@ -1,7 +1,7 @@
 from src.Infrastructure.Services.BoardVisualizer import BoardVisualizer
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from src.Domain.Pieces.Piece import Color
+from src.Domain.Entities.Piece import Color
 from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
 from src.Infrastructure.Clients.Client import Client
 
@@ -47,7 +47,7 @@ class CommandLineClient(Client):
                 coordinates[1]
             )
             try:
-                validate_coordinate_service.validate_coordinates(validate_coordinates_command)
+                validate_coordinate_service.execute(validate_coordinates_command)
             except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
                 print(e)
                 continue

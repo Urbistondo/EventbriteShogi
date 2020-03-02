@@ -3,6 +3,8 @@ from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementFo
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
+from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
+from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
 
 
 class ValidateMoveService:
@@ -12,6 +14,23 @@ class ValidateMoveService:
         origin_coordinates = validate_move_command.get_origin_coordinates()
         destination_coordinates = validate_move_command.get_destination_coordinates()
         color = validate_move_command.get_color()
+
+        ValidateCoordinatesService.execute(
+            ValidateCoordinatesCommand(
+                board.get_rows(),
+                board.get_columns(),
+                origin_coordinates[0],
+                origin_coordinates[1]
+            )
+        )
+        ValidateCoordinatesService.execute(
+            ValidateCoordinatesCommand(
+                board.get_rows(),
+                board.get_columns(),
+                destination_coordinates[0],
+                destination_coordinates[1]
+            )
+        )
 
         if board.is_square_empty(origin_coordinates[0], origin_coordinates[1]):
             raise OriginSquareEmptyError('The origin square is empty')

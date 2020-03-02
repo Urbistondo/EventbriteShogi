@@ -1,4 +1,4 @@
-from src.Domain.Pieces.Piece import Piece
+from src.Domain.Entities.Piece import Piece
 
 
 class Rook(Piece):

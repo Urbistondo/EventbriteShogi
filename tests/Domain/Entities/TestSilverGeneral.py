@@ -1,10 +1,10 @@
 import unittest
 
-from src.Domain.Pieces.GoldGeneral import GoldGeneral
-from src.Domain.Pieces.Piece import Color
+from src.Domain.Entities.SilverGeneral import SilverGeneral
+from src.Domain.Entities.Piece import Color
 
 
-class TestGoldGeneral(unittest.TestCase):
+class TestSilverGeneral(unittest.TestCase):
     COLORS = {
         Color.WHITE: {
             'description': 'Whites',
@@ -16,29 +16,28 @@ class TestGoldGeneral(unittest.TestCase):
         },
     }
 
-    PIECE_DESCRIPTION = 'Gold General'
-    PIECE_REPRESENTATION = 'G'
+    PIECE_DESCRIPTION = 'Silver General'
+    PIECE_REPRESENTATION = 'S'
 
     def test_init(self):
-        piece = GoldGeneral(Color.WHITE)
+        piece = SilverGeneral(Color.WHITE)
         assert piece.description == self.PIECE_DESCRIPTION
         assert piece.representation == self.PIECE_REPRESENTATION
         assert piece.color == Color.WHITE
         assert piece.symbol == self.COLORS[Color.WHITE]['symbol']
 
     def test_can_reach(self):
-        piece = GoldGeneral(Color.WHITE)
+        piece = SilverGeneral(Color.WHITE)
 
         origin_row = 2
         origin_col = 2
 
         valid_destinations = [
-            (1, 2),
-            (2, 1),
+            (1, 1),
             (3, 1),
             (3, 2),
             (3, 3),
-            (2, 3),
+            (1, 3),
         ]
 
         for i in range(5):

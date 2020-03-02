@@ -1,4 +1,4 @@
-from src.Domain.Pieces.Piece import Piece, Color
+from src.Domain.Entities.Piece import Piece, Color
 
 
 class Knight(Piece):
