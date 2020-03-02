@@ -1,9 +1,4 @@
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
-from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
-from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
-from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 
 
 class ValidateCoordinatesService:
