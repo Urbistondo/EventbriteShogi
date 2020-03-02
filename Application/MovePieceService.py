@@ -1,11 +1,11 @@
-from Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
-from Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
-from Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
+from Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
+from Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
+from Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 
 
-class MoveController:
+class MovePieceService:
     @staticmethod
     def validate_coordinates(board, coordinates):
         if len(coordinates) != 2:
@@ -31,16 +31,25 @@ class MoveController:
         return board.is_occupied_by_enemy(destination_coordinates[0], destination_coordinates[1], color)
 
     @staticmethod
-    def move(board, origin_coordinates, destination_coordinates, color):
-        MoveController.validate_move(
+    def move(move_piece_command):
+        board = move_piece_command.get_board()
+        origin_coordinates = move_piece_command.get_origin_coordinates()
+        destination_coordinates = move_piece_command.get_destination_coordinates()
+        color = move_piece_command.get_color()
+
+        MovePieceService.validate_move(
             board,
             origin_coordinates,
             destination_coordinates,
             color
         )
+
         captured = None
-        if MoveController.is_capture(board, destination_coordinates, color):
-            captured = board.get_piece_in_square(destination_coordinates[0], destination_coordinates[1])
+        if MovePieceService.is_capture(board, destination_coordinates, color):
+            captured = board.get_piece_in_square(
+                destination_coordinates[0],
+                destination_coordinates[1]
+            )
 
         board.grid[destination_coordinates[0]][destination_coordinates[1]].set_piece(
             board.grid[origin_coordinates[0]][origin_coordinates[1]].get_piece()

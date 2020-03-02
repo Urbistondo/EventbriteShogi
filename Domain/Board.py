@@ -1,5 +1,5 @@
-from Pieces.Piece import Color
-from Square import Square
+from Domain.Pieces.Piece import Color
+from Domain.Square import Square
 
 
 class Board:

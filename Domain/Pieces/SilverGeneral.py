@@ -1,4 +1,4 @@
-from Pieces.Piece import Piece
+from Domain.Pieces.Piece import Piece
 
 
 class SilverGeneral(Piece):

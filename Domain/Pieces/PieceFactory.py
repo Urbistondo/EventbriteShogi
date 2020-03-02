@@ -1,11 +1,11 @@
-from Pieces.Bishop import Bishop
-from Pieces.GoldGeneral import GoldGeneral
-from Pieces.King import King
-from Pieces.Knight import Knight
-from Pieces.Lance import Lance
-from Pieces.Pawn import Pawn
-from Pieces.Rook import Rook
-from Pieces.SilverGeneral import SilverGeneral
+from Domain.Pieces.Bishop import Bishop
+from Domain.Pieces.GoldGeneral import GoldGeneral
+from Domain.Pieces.King import King
+from Domain.Pieces.Knight import Knight
+from Domain.Pieces.Lance import Lance
+from Domain.Pieces.Pawn import Pawn
+from Domain.Pieces.Rook import Rook
+from Domain.Pieces.SilverGeneral import SilverGeneral
 
 
 class PieceFactory:

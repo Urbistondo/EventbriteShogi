@@ -1,13 +1,14 @@
-from Board import Board
-from Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
-from Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
-from Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
-from Game import Game
-from MoveController import MoveController
-from Pieces.Piece import Color
-from Pieces.PieceFactory import PieceFactory
+from Application.MovePieceCommand import MovePieceCommand
+from Domain.Board import Board
+from Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
+from Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
+from Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
+from Domain.Game import Game
+from Application.MovePieceService import MovePieceService
+from Domain.Pieces.Piece import Color
+from Domain.Pieces.PieceFactory import PieceFactory
 
 
 def prompt_move(board, turn, player, move_controller):
@@ -40,7 +41,7 @@ def prompt_move(board, turn, player, move_controller):
 
 board = Board(9, 9)
 piece_factory = PieceFactory()
-move_controller = MoveController()
+move_controller = MovePieceService()
 game = Game(board, piece_factory)
 game.start_game()
 
@@ -52,11 +53,8 @@ while not game.is_finished():
     while True:
         try:
             origin_coordinates, destination_coordinates = prompt_move(board, game.get_turn(), color, move_controller)
-            captured = move_controller.move(
-                board,
-                origin_coordinates, destination_coordinates,
-                color
-            )
+            move_piece_command = MovePieceCommand(board, origin_coordinates, destination_coordinates, color)
+            captured = move_controller.move(move_piece_command)
         except (
                 CoordinatesOutOfBoundError,
                 DestinationSquareOccupiedError,
