@@ -1,6 +1,7 @@
 from src.Application.Services.MoveAndCapturePieceCommand import MoveAndCapturePieceCommand
 from src.Application.Services.MoveAndCapturePieceService import MoveAndCapturePieceService
 from src.Application.Services.MovePieceCommand import MovePieceCommand
+from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
 from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
 from src.Domain.Board import Board
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
@@ -51,7 +52,8 @@ while not command_line_client.get_game().is_finished():
                 InvalidCoordinateFormat,
                 InvalidMovementForPieceError,
                 OriginSquareEmptyError,
-                OriginSquareContainsEnemyPieceError
+                OriginSquareContainsEnemyPieceError,
+                PieceMovementPathObstructedError
         ) as e:
             print(e)
             continue

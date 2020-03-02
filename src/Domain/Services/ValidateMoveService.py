@@ -2,6 +2,7 @@ from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSqua
 from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
+from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
 
 
 class ValidateMoveService:
@@ -29,3 +30,11 @@ class ValidateMoveService:
                 color
         ):
             raise InvalidMovementForPieceError('The destination square is not reachable by the selected piece')
+
+        if board.is_path_obstructed(
+                origin_coordinates[0],
+                origin_coordinates[1],
+                destination_coordinates[0],
+                destination_coordinates[1]
+        ):
+            raise PieceMovementPathObstructedError('The path of the movement is obstructed by other pieces')
