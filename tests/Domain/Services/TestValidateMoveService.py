@@ -1,24 +1,13 @@
 import unittest
 
 from src.Domain.Entities.Board import Board
-from src.Domain.Entities.Bishop import Bishop
-from src.Domain.Entities.GoldGeneral import GoldGeneral
-from src.Domain.Entities.King import King
-from src.Domain.Entities.Knight import Knight
-from src.Domain.Entities.Lance import Lance
-from src.Domain.Entities.Pawn import Pawn
 from src.Domain.Entities.Piece import Color
 from src.Domain.Entities.PieceFactory import PieceFactory
-from src.Domain.Entities.Rook import Rook
-from src.Domain.Entities.SilverGeneral import SilverGeneral
-from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
 from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
-from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
-from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
 from src.Domain.Services.ValidateMoveCommand import ValidateMoveCommand
 from src.Domain.Services.ValidateMoveService import ValidateMoveService
 
