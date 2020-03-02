@@ -4,7 +4,7 @@ from src.Domain.Pieces.Pawn import Pawn
 from src.Domain.Pieces.Piece import Color
 
 
-class TestBishop(unittest.TestCase):
+class TestPawn(unittest.TestCase):
     COLORS = {
         Color.WHITE: {
             'description': 'Whites',
@@ -16,30 +16,32 @@ class TestBishop(unittest.TestCase):
         },
     }
 
-    PAWN_DESCRIPTION = 'Pawn'
-    PAWN_REPRESENTATION = 'P'
+    PIECE_DESCRIPTION = 'Pawn'
+    PIECE_REPRESENTATION = 'P'
 
     def test_init(self):
-        pawn = Pawn(Color.WHITE)
-        assert pawn.description == 'Pawn'
-        assert pawn.representation == 'P'
-        assert pawn.color == Color.WHITE
-        assert pawn.symbol == self.COLORS[Color.WHITE]['symbol']
+        piece = Pawn(Color.WHITE)
+        assert piece.description == self.PIECE_DESCRIPTION
+        assert piece.representation == self.PIECE_REPRESENTATION
+        assert piece.color == Color.WHITE
+        assert piece.symbol == self.COLORS[Color.WHITE]['symbol']
 
     def test_can_reach(self):
-        pawn = Pawn(Color.WHITE)
-        self.assertTrue(pawn.can_reach(1, 1, 2, 1, pawn.get_color()))
+        piece = Pawn(Color.WHITE)
+
+        self.assertTrue(piece.can_reach(1, 1, 2, 1, piece.get_color()))
 
     def test_can_reach_false(self):
-        pawn = Pawn(Color.WHITE)
-        self.assertFalse(pawn.can_reach(1, 1, 1, 1, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 0, 1, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 0, 0, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 1, 0, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 2, 0, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 2, 2, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 1, 2, pawn.get_color()))
-        self.assertFalse(pawn.can_reach(1, 1, 0, 1, pawn.get_color()))
+        piece = Pawn(Color.WHITE)
+
+        self.assertFalse(piece.can_reach(1, 1, 1, 1, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 0, 1, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 0, 0, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 1, 0, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 2, 0, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 2, 2, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 1, 2, piece.get_color()))
+        self.assertFalse(piece.can_reach(1, 1, 0, 1, piece.get_color()))
 
 
 if __name__ == '__main__':
