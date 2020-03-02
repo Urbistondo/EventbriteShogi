@@ -6,3 +6,9 @@ class King(Piece):
         Piece.__init__(self, color)
         self.description = 'King'
         self.representation = 'K'
+
+    def can_reach(self, origin_row, origin_col, destination_row, destination_col, color=None):
+        if abs(origin_row - destination_row) > 1 or abs(origin_col - destination_col) > 1:
+            return False
+        else:
+            return True
