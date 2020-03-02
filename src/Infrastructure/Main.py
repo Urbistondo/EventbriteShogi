@@ -1,4 +1,6 @@
 from src.Application.MovePieceCommand import MovePieceCommand
+from src.Application.ValidateCoordinatesCommand import ValidateCoordinatesCommand
+from src.Application.ValidateCoordinatesService import ValidateCoordinatesService
 from src.Domain.Board import Board
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
@@ -12,14 +14,20 @@ from src.Domain.Pieces.Piece import Color
 from src.Domain.Pieces.PieceFactory import PieceFactory
 
 
-def prompt_move(board, turn, player, move_controller):
+def prompt_move(rows, columns, turn, player, validate_coordinate_service):
     next_color = 'Black' if player == Color.BLACK else 'White'
     print('Turn ' + str(turn) + ' - ' + next_color)
 
     while True:
         origin_coordinates = input('From (row col):\n')
+        validate_coordinates_command = ValidateCoordinatesCommand(
+            rows,
+            columns,
+            origin_coordinates[0],
+            origin_coordinates[1]
+        )
         try:
-            move_controller.validate_coordinates(board, origin_coordinates)
+            validate_coordinate_service.validate_coordinates(validate_coordinates_command)
         except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
             print(e)
             continue
@@ -28,8 +36,14 @@ def prompt_move(board, turn, player, move_controller):
 
     while True:
         destination_coordinates = input('To (row col):\n')
+        validate_coordinates_command = ValidateCoordinatesCommand(
+            rows,
+            columns,
+            destination_coordinates[0],
+            destination_coordinates[1]
+        )
         try:
-            move_controller.validate_coordinates(board, destination_coordinates)
+            validate_coordinate_service.validate_coordinates(validate_coordinates_command)
         except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
             print(e)
             continue
@@ -42,7 +56,8 @@ def prompt_move(board, turn, player, move_controller):
 
 board = Board(9, 9)
 piece_factory = PieceFactory()
-move_controller = MovePieceService()
+move_piece_service = MovePieceService()
+validate_coordinates_service = ValidateCoordinatesService()
 game = Game(board, piece_factory)
 game.start_game()
 
@@ -53,9 +68,17 @@ while not game.is_finished():
 
     while True:
         try:
-            origin_coordinates, destination_coordinates = prompt_move(board, game.get_turn(), color, move_controller)
-            move_piece_command = MovePieceCommand(board, origin_coordinates, destination_coordinates, color)
-            captured = move_controller.move(move_piece_command)
+            origin_coordinates, destination_coordinates = prompt_move(
+                board.get_rows(),
+                board.get_columns(),
+                game.get_turn(),
+                color,
+                validate_coordinates_service
+            )
+
+            captured = move_piece_service.move(
+                MovePieceCommand(board, origin_coordinates, destination_coordinates, color)
+            )
         except (
                 CoordinatesOutOfBoundError,
                 DestinationSquareOccupiedError,

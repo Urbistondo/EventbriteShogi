@@ -17,7 +17,7 @@ class MovePieceService:
         except ValueError:
             print('The provided coordinates include non-numeric characters')
 
-        if row < 0 or col < 0 or row >= board.rows or col >= row >= board.columns:
+        if row < 0 or col < 0 or row >= board.get_rows() or col >= board.get_columns():
             raise CoordinatesOutOfBoundError('The provided coordinates are out of the bounds of the board')
 
     @staticmethod
@@ -25,13 +25,13 @@ class MovePieceService:
         if board.is_square_empty(origin_coordinates[0], origin_coordinates[1]):
             raise OriginSquareEmptyError('The origin square is empty')
 
-        if not board.is_occupied_by_friendly(origin_coordinates[0], origin_coordinates[1], color):
+        if not board.is_square_occupied_by_friendly(origin_coordinates[0], origin_coordinates[1], color):
             raise OriginSquareContainsEnemyPieceError('The origin square contains an enemy piece')
 
-        if board.is_occupied_by_friendly(destination_coordinates[0], destination_coordinates[1], color):
+        if board.is_square_occupied_by_friendly(destination_coordinates[0], destination_coordinates[1], color):
             raise DestinationSquareOccupiedError("Can't move to a square occupied by a friendly piece")
 
-        if not board.is_reachable_by_piece(
+        if not board.is_square_reachable_by_piece(
                 origin_coordinates[0],
                 origin_coordinates[1],
                 destination_coordinates[0],
@@ -42,7 +42,7 @@ class MovePieceService:
 
     @staticmethod
     def is_capture(board, destination_coordinates, color):
-        return board.is_occupied_by_enemy(destination_coordinates[0], destination_coordinates[1], color)
+        return board.is_square_occupied_by_enemy(destination_coordinates[0], destination_coordinates[1], color)
 
     @staticmethod
     def move(move_piece_command):
@@ -65,9 +65,9 @@ class MovePieceService:
                 destination_coordinates[1]
             )
 
-        board.grid[destination_coordinates[0]][destination_coordinates[1]].set_piece(
-            board.grid[origin_coordinates[0]][origin_coordinates[1]].get_piece()
+        board.get_grid()[destination_coordinates[0]][destination_coordinates[1]].set_piece(
+            board.get_grid()[origin_coordinates[0]][origin_coordinates[1]].get_piece()
         )
-        board.grid[origin_coordinates[0]][origin_coordinates[1]].remove_piece()
+        board.get_grid()[origin_coordinates[0]][origin_coordinates[1]].remove_piece()
 
         return captured
