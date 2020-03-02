@@ -54,5 +54,14 @@ class Game:
         else:
             self.captured_black.append(piece)
 
+    def remove_captured(self, color, piece):
+        if color == Color.WHITE:
+            self.captured_white.remove(piece)
+        else:
+            self.captured_black.remove(piece)
+
+    def get_captured_by_color(self, color):
+        return self.captured_white if color == Color.WHITE else self.captured_black
+
     def to_string(self):
         self.board.to_string(self.captured_white, self.captured_black)

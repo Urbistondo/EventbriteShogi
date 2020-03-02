@@ -16,7 +16,7 @@ class CommandLineClient(Client):
         CommandLineClient.__print_turn_info(turn, color)
 
         origin_coordinates = CommandLineClient.__get_coordinates(
-            rows,
+            rows + 1,
             columns,
             CommandLineClient.PROMPT_FROM,
             validate_coordinate_service
@@ -40,15 +40,15 @@ class CommandLineClient(Client):
     def __get_coordinates(rows, columns, text, validate_coordinate_service):
         while True:
             coordinates = input(text + '\n')
-            validate_coordinates_command = ValidateCoordinatesCommand(
-                rows,
-                columns,
-                coordinates[0],
-                coordinates[1]
-            )
             try:
+                validate_coordinates_command = ValidateCoordinatesCommand(
+                    rows,
+                    columns,
+                    coordinates[0],
+                    coordinates[1]
+                )
                 validate_coordinate_service.execute(validate_coordinates_command)
-            except (InvalidCoordinateFormat, CoordinatesOutOfBoundError) as e:
+            except (InvalidCoordinateFormat, CoordinatesOutOfBoundError, IndexError) as e:
                 print(e)
                 continue
 
@@ -57,4 +57,8 @@ class CommandLineClient(Client):
         return coordinates
 
     def show_game_state(self):
-        BoardVisualizer.visualize(self.game.board, self.game.captured_white, self.game.captured_black)
+        BoardVisualizer.visualize(
+            self.game.board,
+            self.game.get_captured_by_color(Color.WHITE),
+            self.game.get_captured_by_color(Color.BLACK)
+        )
