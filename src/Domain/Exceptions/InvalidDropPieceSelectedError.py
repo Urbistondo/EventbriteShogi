@@ -1,0 +1,2 @@
+class InvalidDropPieceSelectedError(Exception):
+    pass
