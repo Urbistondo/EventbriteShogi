@@ -4,7 +4,7 @@ from src.Domain.Pieces.GoldGeneral import GoldGeneral
 from src.Domain.Pieces.Piece import Color
 
 
-class TestPawn(unittest.TestCase):
+class TestGoldGeneral(unittest.TestCase):
     COLORS = {
         Color.WHITE: {
             'description': 'Whites',
@@ -29,18 +29,28 @@ class TestPawn(unittest.TestCase):
     def test_can_reach(self):
         piece = GoldGeneral(Color.WHITE)
 
-        self.assertTrue(piece.can_reach(1, 1, 0, 1, piece.get_color()))
-        self.assertTrue(piece.can_reach(1, 1, 1, 0, piece.get_color()))
-        self.assertTrue(piece.can_reach(1, 1, 2, 0, piece.get_color()))
-        self.assertTrue(piece.can_reach(1, 1, 2, 1, piece.get_color()))
-        self.assertTrue(piece.can_reach(1, 1, 2, 2, piece.get_color()))
-        self.assertTrue(piece.can_reach(1, 1, 1, 2, piece.get_color()))
+        origin_row = 2
+        origin_col = 2
 
-    def test_can_reach_false(self):
-        piece = GoldGeneral(Color.WHITE)
+        valid_destinations = [
+            (1, 2),
+            (2, 1),
+            (3, 1),
+            (3, 2),
+            (3, 3),
+            (2, 3),
+        ]
 
-        self.assertFalse(piece.can_reach(1, 1, 0, 0, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 0, 2, piece.get_color()))
+        for i in range(5):
+            for j in range(5):
+                if (i, j) in valid_destinations:
+                    self.assertTrue(
+                        piece.can_reach(origin_row, origin_col, i, j, piece.get_color())
+                    )
+                else:
+                    self.assertFalse(
+                        piece.can_reach(origin_row, origin_col, i, j, piece.get_color())
+                    )
 
 
 if __name__ == '__main__':

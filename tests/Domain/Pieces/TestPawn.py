@@ -1,4 +1,5 @@
 import unittest
+from unittest_data_provider import data_provider
 
 from src.Domain.Pieces.Pawn import Pawn
 from src.Domain.Pieces.Piece import Color
@@ -29,19 +30,21 @@ class TestPawn(unittest.TestCase):
     def test_can_reach(self):
         piece = Pawn(Color.WHITE)
 
-        self.assertTrue(piece.can_reach(1, 1, 2, 1, piece.get_color()))
+        origin_row = 2
+        origin_col = 2
 
-    def test_can_reach_false(self):
-        piece = Pawn(Color.WHITE)
+        valid_destinations = [(3, 2)]
 
-        self.assertFalse(piece.can_reach(1, 1, 1, 1, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 0, 1, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 0, 0, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 1, 0, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 2, 0, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 2, 2, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 1, 2, piece.get_color()))
-        self.assertFalse(piece.can_reach(1, 1, 0, 1, piece.get_color()))
+        for i in range(5):
+            for j in range(5):
+                if (i, j) in valid_destinations:
+                    self.assertTrue(
+                        piece.can_reach(origin_row, origin_col, i, j, piece.get_color())
+                    )
+                else:
+                    self.assertFalse(
+                        piece.can_reach(origin_row, origin_col, i, j, piece.get_color())
+                    )
 
 
 if __name__ == '__main__':
