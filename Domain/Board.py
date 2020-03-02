@@ -1,3 +1,4 @@
+from Domain.BoardVisualizer import BoardVisualizer
 from Domain.Pieces.Piece import Color
 from Domain.Square import Square
 
@@ -63,21 +64,4 @@ class Board:
         return self.grid[row][col].get_piece()
 
     def to_string(self, captured_white=None, captured_black=None):
-        print(self.rows)
-        print('============ Whites (v) ============')
-        print('Captured:')
-        print('9:')
-        col_indices = '   '
-        for i in range(self.columns):
-            col_indices += ' ' + str(i) + ' '
-        print(col_indices)
-        print('+ ' + ' -' * len(col_indices) + ' +')
-        for index, row in enumerate(self.grid):
-            row_string = str(index) + '| '
-            for square in row:
-                row_string += square.to_string() + ' '
-            print(row_string)
-        print('+' + ' -' * len(col_indices) + ' +')
-        print('Captured:')
-        print('9:')
-        print('============ Blacks (^) ============')
+        BoardVisualizer.visualize(self.grid, captured_white, captured_black)

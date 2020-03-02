@@ -11,7 +11,11 @@ class MovePieceService:
         if len(coordinates) != 2:
             raise InvalidCoordinateFormat('The provided coordinates are not valid')
 
-        row, col = int(coordinates[0]), int(coordinates[1])
+        try:
+            row, col = int(coordinates[0]), int(coordinates[1])
+        except ValueError:
+            print('The provided coordinates include non-numeric characters')
+
         if row < 0 or col < 0 or row >= board.rows or col >= row >= board.columns:
             raise CoordinatesOutOfBoundError('The provided coordinates are out of the bounds of the board')
 

@@ -28,5 +28,8 @@ class Piece:
     def get_color(self):
         return self.color
 
+    def can_reach(self, origin_row, origin_col, destination_row, destination_col, color=None):
+        pass
+
     def to_string(self):
         return self.representation + self.symbol
