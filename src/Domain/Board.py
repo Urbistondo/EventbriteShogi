@@ -60,6 +60,10 @@ class Board:
     def is_occupied_by_enemy(self, row, col, color):
         return not self.grid[row][col].is_empty() and self.grid[row][col].get_piece().get_color() != color
 
+    def is_reachable_by_piece(self, origin_row, origin_col, destination_row, destination_col, color):
+        piece = self.grid[origin_row][origin_col].get_piece()
+        return piece.can_reach(origin_row, origin_col, destination_row, destination_col, color)
+
     def get_piece_in_square(self, row, col):
         return self.grid[row][col].get_piece()
 

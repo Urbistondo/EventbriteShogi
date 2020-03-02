@@ -3,6 +3,7 @@ from src.Domain.Board import Board
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
 from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
+from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 from src.Domain.Game import Game
@@ -59,6 +60,7 @@ while not game.is_finished():
                 CoordinatesOutOfBoundError,
                 DestinationSquareOccupiedError,
                 InvalidCoordinateFormat,
+                InvalidMovementForPieceError,
                 OriginSquareEmptyError,
                 OriginSquareContainsEnemyPieceError
         ) as e:

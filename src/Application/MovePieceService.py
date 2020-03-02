@@ -1,6 +1,7 @@
 from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
 from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
 from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
+from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
 from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
 from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
 
@@ -29,6 +30,15 @@ class MovePieceService:
 
         if board.is_occupied_by_friendly(destination_coordinates[0], destination_coordinates[1], color):
             raise DestinationSquareOccupiedError("Can't move to a square occupied by a friendly piece")
+
+        if not board.is_reachable_by_piece(
+                origin_coordinates[0],
+                origin_coordinates[1],
+                destination_coordinates[0],
+                destination_coordinates[1],
+                color
+        ):
+            raise InvalidMovementForPieceError('The destination square is not reachable by the selected piece')
 
     @staticmethod
     def is_capture(board, destination_coordinates, color):
