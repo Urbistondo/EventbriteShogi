@@ -1,8 +1,8 @@
 import unittest
 from unittest_data_provider import data_provider
 
-from src.Domain.Entities.Pawn import Pawn
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.Pawn import Pawn
+from Domain.Entities.Piece import Color
 
 
 class TestPawn(unittest.TestCase):

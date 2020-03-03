@@ -1,5 +1,5 @@
-from src.Domain.Services.ValidateDropCommand import ValidateDropCommand
-from src.Domain.Services.ValidateDropService import ValidateDropService
+from Domain.Services.ValidateDropCommand import ValidateDropCommand
+from Domain.Services.ValidateDropService import ValidateDropService
 
 
 class DropPieceService:

@@ -1,22 +1,21 @@
-from src.Application.Services.DropPieceCommand import DropPieceCommand
-from src.Application.Services.DropPieceService import DropPieceService
-from src.Application.Services.MoveAndCapturePieceCommand import MoveAndCapturePieceCommand
-from src.Application.Services.MoveAndCapturePieceService import MoveAndCapturePieceService
-from src.Application.Services.MovePieceCommand import MovePieceCommand
-from src.Domain.Exceptions.InvalidDropPieceSelectedError import InvalidDropPieceSelectedError
-from src.Domain.Exceptions.PieceMovementPathObstructedError import PieceMovementPathObstructedError
-from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
-from src.Domain.Entities.Board import Board
-from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from src.Domain.Exceptions.DestinationSquareOccupiedError import DestinationSquareOccupiedError
-from src.Domain.Exceptions.InvalidCoordinateFormatError import InvalidCoordinateFormat
-from src.Domain.Exceptions.InvalidMovementForPieceError import InvalidMovementForPieceError
-from src.Domain.Exceptions.OriginSquareContainsEnemyPieceError import OriginSquareContainsEnemyPieceError
-from src.Domain.Exceptions.OriginSquareEmptyError import OriginSquareEmptyError
-from src.Domain.Entities.Game import Game
-from src.Application.Services.MovePieceService import MovePieceService
-from src.Domain.Entities.PieceFactory import PieceFactory
-from src.Infrastructure.Clients.CommandLineClient import CommandLineClient
+from Application.Services.DropPieceCommand import DropPieceCommand
+from Application.Services.DropPieceService import DropPieceService
+from Application.Services.MoveAndCapturePieceCommand import MoveAndCapturePieceCommand
+from Application.Services.MoveAndCapturePieceService import MoveAndCapturePieceService
+from Application.Services.MovePieceCommand import MovePieceCommand
+from Domain.Exceptions.InvalidDropPieceSelectedException import InvalidDropPieceSelectedException
+from Domain.Exceptions.PieceMovementPathObstructedException import PieceMovementPathObstructedException
+from Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
+from Domain.Entities.Board import Board
+from Domain.Exceptions.CoordinatesOutOfBoundsException import CoordinatesOutOfBoundsException
+from Domain.Exceptions.DestinationSquareOccupiedException import DestinationSquareOccupiedException
+from Domain.Exceptions.InvalidMovementForPieceException import InvalidMovementForPieceException
+from Domain.Exceptions.OriginSquareContainsEnemyPieceException import OriginSquareContainsEnemyPieceException
+from Domain.Exceptions.OriginSquareEmptyException import OriginSquareEmptyException
+from Domain.Entities.Game import Game
+from Application.Services.MovePieceService import MovePieceService
+from Domain.Entities.PieceFactory import PieceFactory
+from Infrastructure.Clients.CommandLineClient import CommandLineClient
 
 
 ROWS = 9
@@ -66,14 +65,13 @@ while not command_line_client.get_game().is_finished():
             else:
                 move_piece_service.execute(MovePieceCommand(board, origin_coordinates, destination_coordinates, color))
         except (
-                CoordinatesOutOfBoundError,
-                DestinationSquareOccupiedError,
-                InvalidCoordinateFormat,
-                InvalidDropPieceSelectedError,
-                InvalidMovementForPieceError,
-                OriginSquareEmptyError,
-                OriginSquareContainsEnemyPieceError,
-                PieceMovementPathObstructedError
+                CoordinatesOutOfBoundsException,
+                DestinationSquareOccupiedException,
+                InvalidDropPieceSelectedException,
+                InvalidMovementForPieceException,
+                OriginSquareEmptyException,
+                OriginSquareContainsEnemyPieceException,
+                PieceMovementPathObstructedException
         ) as e:
             print(e)
             continue

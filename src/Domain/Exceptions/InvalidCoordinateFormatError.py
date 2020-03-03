@@ -1,2 +1,0 @@
-class InvalidCoordinateFormat(Exception):
-    pass

@@ -1,4 +1,4 @@
-from src.Domain.Entities.Piece import Piece
+from Domain.Entities.Piece import Piece
 
 
 class Bishop(Piece):

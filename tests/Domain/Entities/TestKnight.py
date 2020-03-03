@@ -1,7 +1,7 @@
 import unittest
 
-from src.Domain.Entities.Knight import Knight
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.Knight import Knight
+from Domain.Entities.Piece import Color
 
 
 class TestKnight(unittest.TestCase):

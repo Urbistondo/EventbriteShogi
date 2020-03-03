@@ -1,7 +1,7 @@
 import unittest
 
-from src.Domain.Entities.SilverGeneral import SilverGeneral
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.SilverGeneral import SilverGeneral
+from Domain.Entities.Piece import Color
 
 
 class TestSilverGeneral(unittest.TestCase):

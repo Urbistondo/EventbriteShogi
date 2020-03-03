@@ -1,2 +1,0 @@
-class DestinationSquareOccupiedError(Exception):
-    pass

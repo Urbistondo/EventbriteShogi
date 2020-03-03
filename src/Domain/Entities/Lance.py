@@ -1,4 +1,4 @@
-from src.Domain.Entities.Piece import Piece, Color
+from Domain.Entities.Piece import Piece, Color
 
 
 class Lance(Piece):

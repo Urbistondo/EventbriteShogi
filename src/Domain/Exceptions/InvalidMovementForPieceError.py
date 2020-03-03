@@ -1,2 +1,0 @@
-class InvalidMovementForPieceError(Exception):
-    pass

@@ -1,10 +1,10 @@
 import unittest
 
-from src.Domain.Entities.Board import Board
-from src.Domain.Entities.Game import Game
-from src.Domain.Entities.Pawn import Pawn
-from src.Domain.Entities.Piece import Color
-from src.Domain.Entities.PieceFactory import PieceFactory
+from Domain.Entities.Board import Board
+from Domain.Entities.Game import Game
+from Domain.Entities.Pawn import Pawn
+from Domain.Entities.Piece import Color
+from Domain.Entities.PieceFactory import PieceFactory
 
 
 class TestBoard(unittest.TestCase):

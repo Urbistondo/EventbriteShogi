@@ -1,6 +1,6 @@
 import datetime
 
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.Piece import Color
 
 
 class Game:

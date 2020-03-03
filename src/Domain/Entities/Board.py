@@ -1,9 +1,9 @@
-from src.Domain.Entities.Bishop import Bishop
-from src.Domain.Entities.Lance import Lance
-from src.Domain.Entities.Rook import Rook
-from src.Infrastructure.Services.BoardVisualizer import BoardVisualizer
-from src.Domain.Entities.Piece import Color
-from src.Domain.Entities.Square import Square
+from Domain.Entities.Bishop import Bishop
+from Domain.Entities.Lance import Lance
+from Domain.Entities.Rook import Rook
+from Infrastructure.Services.BoardVisualizer import BoardVisualizer
+from Domain.Entities.Piece import Color
+from Domain.Entities.Square import Square
 
 
 class Board:

@@ -1,7 +1,7 @@
 import unittest
 
-from src.Domain.Entities.Bishop import Bishop
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.Bishop import Bishop
+from Domain.Entities.Piece import Color
 
 
 class TestBishop(unittest.TestCase):

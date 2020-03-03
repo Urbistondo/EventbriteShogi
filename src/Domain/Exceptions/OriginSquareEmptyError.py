@@ -1,2 +1,0 @@
-class OriginSquareEmptyError(Exception):
-    pass

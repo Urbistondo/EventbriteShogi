@@ -1,8 +1,8 @@
 import unittest
 
-from src.Domain.Exceptions.CoordinatesOutOfBoundsError import CoordinatesOutOfBoundError
-from src.Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
-from src.Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
+from Domain.Exceptions.CoordinatesOutOfBoundsException import CoordinatesOutOfBoundsException
+from Domain.Services.ValidateCoordinatesCommand import ValidateCoordinatesCommand
+from Domain.Services.ValidateCoordinatesService import ValidateCoordinatesService
 
 
 class TestValidateCoordinatesService(unittest.TestCase):
@@ -38,7 +38,7 @@ class TestValidateCoordinatesService(unittest.TestCase):
             0
         )
 
-        with self.assertRaises(CoordinatesOutOfBoundError):
+        with self.assertRaises(CoordinatesOutOfBoundsException):
             ValidateCoordinatesService.execute(validate_coordinates_command)
 
 

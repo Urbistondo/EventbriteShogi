@@ -1,7 +1,7 @@
 import unittest
 
-from src.Domain.Entities.Rook import Rook
-from src.Domain.Entities.Piece import Color
+from Domain.Entities.Rook import Rook
+from Domain.Entities.Piece import Color
 
 
 class TestRook(unittest.TestCase):

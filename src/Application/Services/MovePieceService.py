@@ -1,5 +1,5 @@
-from src.Domain.Services.ValidateMoveCommand import ValidateMoveCommand
-from src.Domain.Services.ValidateMoveService import ValidateMoveService
+from Domain.Services.ValidateMoveCommand import ValidateMoveCommand
+from Domain.Services.ValidateMoveService import ValidateMoveService
 
 
 class MovePieceService:

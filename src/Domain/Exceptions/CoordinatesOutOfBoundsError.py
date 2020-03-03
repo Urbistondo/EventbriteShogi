@@ -1,2 +1,0 @@
-class CoordinatesOutOfBoundError(Exception):
-    pass

@@ -1,2 +1,0 @@
-class OriginSquareContainsEnemyPieceError(Exception):
-    pass
